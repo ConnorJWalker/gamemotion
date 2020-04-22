@@ -95,13 +95,16 @@ while True:
                 print("No match found by player")
                 Player_Turn = False
         else:
-            first_player = str(input("who's turn?"))
+            first_player = str(input("who's turn? (Press 3 to exit)"))
             if first_player == "1":
                 print("Player's turn")
                 Player_Turn = True
             elif first_player == "2":
                 print("Pepper's turn")
                 Pepper_Turn = True
+            elif first_player == "3":
+                print("Goodbye")
+                break
         #elif to catch the game when its finished
         if pepperScore == 6:
             print("Game over!")
