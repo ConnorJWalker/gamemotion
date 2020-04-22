@@ -4,19 +4,10 @@ from qibullet import SimulationManager
 from qibullet import PepperVirtual
 import time
 import random
-from CardScanner import x ,y # abreviates the name so it is easier to use . can also try "FROM CardScanner import cardsearch,x,y because x and y are global variables"
+from CardScanner import cardsearch # abreviates the name so it is easier to use . can also try "FROM CardScanner import cardsearch,x,y because x and y are global variables"
 
 Robot  = "pepper"
 
-for i in range (1):
-    try:
-        card_x = x
-        card_y = y
-        break
-    except AttributeError as a:
-        card_x = 0
-        card_y = 0 #default pointing position is the middle of the 5 by 5 grid
-        print (a)
 
 for x in range(2):# creates two random variables to get pepper to point at a random location
  random_x =  random.randint(-3,5)#gridwidth max 5
@@ -32,13 +23,15 @@ Robot = simulation_manager.spawnPepper(
 
 #Pointing
 def Point_at_Match():  
-    Robot.setAngles("RShoulderRoll", ((2.2/10)*card_x), 0.1)## rolls shoulder in x direction should, come after movement in y direction 
+    Reset()
+    Robot.setAngles("RShoulderRoll", (-1*(2.2/20)*int(cardsearch()[1])), 0.1)## rolls shoulder in x direction should, come after movement in y direction 
     time.sleep(3.0)
     ## pepper.setAngles("RShoulderRoll", 0.0, 0.1)
-    Robot.setAngles("RShoulderPitch", ((2.2/10)*card_y), 0.1)
+    Robot.setAngles("RShoulderPitch", ((2.2/20)*int(cardsearch()[2])), 0.1)
     time.sleep(3.0)
 
 def Random_Point():
+    Reset()
     Robot.setAngles("RShoulderRoll", ((2.2/10)*random_x), 0.1)## rolls shoulder in x direction should, come after movement in y direction 
     time.sleep(3.0)
     ## pepper.setAngles("RShoulderRoll", 0.0, 0.1)
@@ -67,27 +60,25 @@ def Reset():
     time.sleep(3.0)
 
 
-print(random_x, random_y)
+print(random_x, random_y)#****uncomment to shows the x and y location Pepper is currently pointing at***
 # code executes instantly if this isn't added
+
 '''
-    pepper.subscribeCamera(PepperVirtual.ID_CAMERA_TOP)
-    print("Activating Camera...")##would instantly close if this wasn't added
+Robot.subscribeCamera(PepperVirtual.ID_CAMERA_TOP)
+print("Activating Camera...")##would instantly close if this wasn't added
+
+
+# Add other objects to the simulation...
+while True:
+    # Retrieving and displaying the synthetic image using OpenCV
+    img = Robot.getCameraFrame()
+    cv2.imshow("synthetic top camera", img)
+    cv2.waitKey(1)
+    False
+    #resolution = Robot.getCameraResolution()#GETS camera resolution
+    # time.sleep(1.0)
+    # print('width : ' +str(resolution.width))
+    # time.sleep(1.0)
+    #print('height : ' +str(resolution.height))
     
-    # Add other objects to the simulation...
-    while True:
-        # Retrieving and displaying the synthetic image using OpenCV
-        img = pepper.getCameraFrame()
-        cv2.imshow("synthetic top camera", img)
-        cv2.waitKey(1)
-
-        resolution = pepper.getCameraResolution()#GETS camera resolution
-       # time.sleep(1.0)
-       # print('width : ' +str(resolution.width))
-       # time.sleep(1.0)
-       #print('height : ' +str(resolution.height))
-    
-        #print(random_x, random_y)#****uncomment to shows the x and y location Pepper is currently pointing at***
-
-       # 
-       '''
-
+'''
