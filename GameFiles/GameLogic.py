@@ -2,6 +2,7 @@ import os# built in module
 import subprocess
 import CardScanner as CS # abreviates the name so it is easier to use . can also try "FROM CardScanner import cardsearch,x,y because x and y are global variables"
 import SpawnPepperTestPointing as SP
+import Opencv
 from past.builtins.misc import execfile
 
 folder_directory = os.getcwd() + "/"
@@ -14,18 +15,21 @@ player_name = ''
 pepperScore = 0
 playerScore = 0
 
+vision = None
+
 # Check os of computer, install locations are differant on windows
 OpenCvBuildLocation = "Debug/" if os.name == "nt" else "cmake-build-debug/" 
 OpenCvDirectory = folder_directory + '../TSE-Vision/' + OpenCvBuildLocation#location of .exe file
 OpenCvFileName = 'vision'#name of your .exe file
 
 RobotMotionName = 'SpawnPepperTestPointing.py'
+vision =  Opencv.OpenCV(folder_directory)
 
 #Functions for starting different processes
 def StartOpenCv():#should only be called once
     try:
         os.chdir(OpenCvDirectory)
-        subprocess.run([OpenCvFileName, "-o", "output.txt", "--render"])
+        vision.start()
     except Exception as e:
             print(e)
 
