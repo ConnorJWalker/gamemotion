@@ -17,18 +17,13 @@ playerScore = 0
 
 vision = None
 
-# Check os of computer, install locations are differant on windows
-OpenCvBuildLocation = "Debug/" if os.name == "nt" else "cmake-build-debug/" 
-OpenCvDirectory = folder_directory + '../TSE-Vision/' + OpenCvBuildLocation#location of .exe file
-OpenCvFileName = 'vision'#name of your .exe file
-
 RobotMotionName = 'SpawnPepperTestPointing.py'
 vision =  Opencv.OpenCV(folder_directory)
 
 #Functions for starting different processes
 def StartOpenCv():#should only be called once
     try:
-        os.chdir(OpenCvDirectory)
+        os.chdir(vision.OpenCvDirectory)
         vision.start()
     except Exception as e:
             print(e)
