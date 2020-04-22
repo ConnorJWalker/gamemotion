@@ -13,8 +13,10 @@ player_name = ''
 pepperScore = 0
 playerScore = 0
 
-OpenCvDirectory = 'C:/Users/Ghost/OneDrive - University of Lincoln/Year 2 second half/TSE Group Project/Project work/DummyOpenCVCode/Debug/'#location of .exe file
-OpenCvFileName = 'DummyOpenCVCode'#name of your .exe file
+# Check os of computer, install locations are differant on windows
+OpenCvBuildLocation = "Debug/" if os.name == "nt" else "cmake-build-debug/" 
+OpenCvDirectory = '../../TSE-Vision/' + OpenCvBuildLocation#location of .exe file
+OpenCvFileName = 'vision'#name of your .exe file
 
 RobotMotionName = 'SpawnPepperTestPointing.py'
 
