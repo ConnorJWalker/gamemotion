@@ -3,9 +3,9 @@ import CardScanner as CS # abreviates the name so it is easier to use . can also
 import SpawnPepperTestPointing as SP
 from past.builtins.misc import execfile
 
-folder_directory = os.path.dirname(__file__)
+folder_directory = os.getcwd() + "/"
 os.chdir(folder_directory)
-
+print(folder_directory)
 Pepper_Turn = False 
 Player_Turn = False
 player_name = ''
