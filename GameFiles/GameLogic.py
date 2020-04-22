@@ -25,7 +25,7 @@ RobotMotionName = 'SpawnPepperTestPointing.py'
 def StartOpenCv():#should only be called once
     try:
         os.chdir(OpenCvDirectory)
-        subprocess.run([OpenCvFileName, "-o output.txt", "--render"])
+        subprocess.run([OpenCvFileName, "-o", "output.txt", "--render"])
     except Exception as e:
             print(e)
 
