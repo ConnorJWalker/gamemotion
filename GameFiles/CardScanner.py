@@ -63,4 +63,5 @@ def cardsearch():
 
     except Exception as e:
         print("No cards in Pick.txt")
+        return "match not found"
 cardsearch()
